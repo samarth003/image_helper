@@ -9,11 +9,15 @@
     <Grid Width="272" Height="480">
         <Button x:Name="Browse" Content="Browse" HorizontalAlignment="Left" Margin="-172,58,0,0" VerticalAlignment="Top" Width="75" Click="Browse_Click"/>
         <WindowsFormsHost x:Name="winFormHost" HorizontalAlignment="Left" Height="480" Margin="0" VerticalAlignment="Top" Width="272"/>
-        <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="-172,250,0,0" VerticalAlignment="Top" Width="75" Click="Save_Click"/>
+        <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="-172,354,0,0" VerticalAlignment="Top" Width="75" Click="Save_Click"/>
         <TextBox x:Name="userInWidth" HorizontalAlignment="Left" Height="26" Margin="-122,109,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="58" TextChanged="userInWidth_TextChanged"/>
-        <Label x:Name="BoxWidth" Content="Width" HorizontalAlignment="Left" Margin="-172,109,0,0" VerticalAlignment="Top" Width="45"/>
-        <Label x:Name="BoxLength" Content="Len" HorizontalAlignment="Left" Margin="-172,149,0,0" VerticalAlignment="Top" Width="45"/>
+        <Label x:Name="BoxWidth" Content="xSize" HorizontalAlignment="Left" Margin="-172,109,0,0" VerticalAlignment="Top" Width="45"/>
+        <Label x:Name="BoxLength" Content="ySize" HorizontalAlignment="Left" Margin="-172,149,0,0" VerticalAlignment="Top" Width="45"/>
         <TextBox x:Name="userInLen" HorizontalAlignment="Left" Height="26" Margin="-122,149,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="58" TextChanged="userInLen_TextChanged"/>
-        <Button x:Name="GenBox" Content="GenBox" HorizontalAlignment="Left" Margin="-172,198,0,0" VerticalAlignment="Top" Width="75" Click="GenBox_Click"/>
+        <Button x:Name="GenBox" Content="GenBox" HorizontalAlignment="Left" Margin="-172,300,0,0" VerticalAlignment="Top" Width="75" Click="GenBox_Click"/>
+        <TextBox x:Name="xPosPoint" HorizontalAlignment="Left" Height="26" Margin="-122,206,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="58" TextChanged="xPosPoint_TextChanged"/>
+        <Label x:Name="xPos" Content="xPos" HorizontalAlignment="Left" Margin="-172,206,0,0" VerticalAlignment="Top" Width="45"/>
+        <Label x:Name="yPos" Content="yPos" HorizontalAlignment="Left" Margin="-172,256,0,0" VerticalAlignment="Top" Width="45"/>
+        <TextBox x:Name="yPosPoint" HorizontalAlignment="Left" Height="26" Margin="-122,256,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="58" TextChanged="yPosPoint_TextChanged"/>
     </Grid>
 </Window>

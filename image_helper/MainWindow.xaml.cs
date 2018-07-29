@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Drawing.Drawing2D;
 
 namespace image_helper
 {
@@ -31,6 +32,8 @@ namespace image_helper
         Bitmap bmp;
         string userWidth;
         string userlength;
+        string xPosition;
+        string yPosition;
         PictureBox picBox;
         public void ShowImage()
         {
@@ -38,12 +41,14 @@ namespace image_helper
             picBox.Width = Convert.ToInt32(winFormHost.Width);
             picBox.Height = Convert.ToInt32(winFormHost.Height);
             winFormHost.Child = picBox;
-            picBox.Paint += new System.Windows.Forms.PaintEventHandler(paintImage);              
+            picBox.Paint += new System.Windows.Forms.PaintEventHandler(paintImage);
         }
 
         void paintImage(object sender, System.Windows.Forms.PaintEventArgs e)
-        {          
+        {
             bmp = new Bitmap(File);
+            int widthbmp = bmp.Width;
+            int heightbmp = bmp.Height;
             System.Drawing.Point ulPoint = new System.Drawing.Point(0, 0);
             e.Graphics.DrawImage(bmp, ulPoint);
         }
@@ -91,8 +96,20 @@ namespace image_helper
             //create a box on the image
             int xWidth = Int32.Parse(userWidth);
             int yLen = Int32.Parse(userlength);
+            int xPosCoord = Int32.Parse(xPosition);
+            int yPosCoord = Int32.Parse(yPosition);
             Graphics g = picBox.CreateGraphics();
-            g.DrawRectangle(Pens.Red, 0, 0, xWidth, yLen);
+            g.DrawRectangle(Pens.Red, xPosCoord, yPosCoord, xWidth, yLen);
+        }
+
+        private void xPosPoint_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            xPosition = xPosPoint.Text;
+        }
+
+        private void yPosPoint_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            yPosition = yPosPoint.Text;
         }
     }
 }
