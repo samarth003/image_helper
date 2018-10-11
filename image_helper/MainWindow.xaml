@@ -5,19 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:image_helper"
         mc:Ignorable="d"
-        Title="Image Helper" Height="540.6" Width="665" ResizeMode="NoResize" FontWeight="Bold" WindowStartupLocation="CenterScreen">
+        Title="Image Helper" Height="540.6" Width="665" ResizeMode="NoResize" FontWeight="Bold" WindowStartupLocation="CenterScreen" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FF78745E" ScrollViewer.VerticalScrollBarVisibility="Disabled" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <Color x:Key="ButtonColor">#FFDDDDDD</Color>
+        <Color x:Key="BorderBrush">#FF707070</Color>
+    </Window.Resources>
     <Grid Width="272" Height="480">
         <Button x:Name="Browse" Content="Browse" HorizontalAlignment="Left" Margin="-172,58,0,0" VerticalAlignment="Top" Width="75" Click="Browse_Click"/>
-        <WindowsFormsHost x:Name="winFormHost" HorizontalAlignment="Left" Height="480" Margin="0" VerticalAlignment="Top" Width="272"/>
+        <WindowsFormsHost x:Name="winFormHost" HorizontalAlignment="Left" Height="480" Margin="0" VerticalAlignment="Top" Width="272" Background="#FFBFCFBF" MaxWidth="272" MaxHeight="480" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
         <Button x:Name="Save" Content="Save" HorizontalAlignment="Left" Margin="-172,354,0,0" VerticalAlignment="Top" Width="75" Click="Save_Click"/>
         <TextBox x:Name="userInWidth" HorizontalAlignment="Left" Height="26" Margin="-122,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" TextChanged="userInWidth_TextChanged"/>
-        <Label x:Name="BoxWidth" Content="xSize" HorizontalAlignment="Left" Margin="-172,109,0,0" VerticalAlignment="Top" Width="45"/>
-        <Label x:Name="BoxLength" Content="ySize" HorizontalAlignment="Left" Margin="-172,149,0,0" VerticalAlignment="Top" Width="45"/>
+        <Label x:Name="BoxWidth" Content="xSize" HorizontalAlignment="Left" Margin="-172,109,0,0" VerticalAlignment="Top" Width="45" BorderThickness="1" Height="26">
+            <Label.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource BorderBrush}"/>
+            </Label.BorderBrush>
+            <Label.Background>
+                <SolidColorBrush Color="{DynamicResource ButtonColor}"/>
+            </Label.Background>
+        </Label>
+        <Label x:Name="BoxLength" Content="ySize" HorizontalAlignment="Left" Margin="-172,149,0,0" VerticalAlignment="Top" Width="45" BorderThickness="1">
+            <Label.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource BorderBrush}"/>
+            </Label.BorderBrush>
+            <Label.Background>
+                <SolidColorBrush Color="{DynamicResource ButtonColor}"/>
+            </Label.Background>
+        </Label>
         <TextBox x:Name="userInLen" HorizontalAlignment="Left" Height="26" Margin="-122,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" TextChanged="userInLen_TextChanged"/>
         <Button x:Name="GenBox" Content="GenBox" HorizontalAlignment="Left" Margin="-172,300,0,0" VerticalAlignment="Top" Width="75" Click="GenBox_Click"/>
         <TextBox x:Name="xPosPoint" HorizontalAlignment="Left" Height="26" Margin="-122,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" TextChanged="xPosPoint_TextChanged"/>
-        <Label x:Name="xPos" Content="xPos" HorizontalAlignment="Left" Margin="-172,206,0,0" VerticalAlignment="Top" Width="45"/>
-        <Label x:Name="yPos" Content="yPos" HorizontalAlignment="Left" Margin="-172,256,0,0" VerticalAlignment="Top" Width="45"/>
+        <Label x:Name="xPos" Content="xPos" HorizontalAlignment="Left" Margin="-172,206,0,0" VerticalAlignment="Top" Width="45" BorderThickness="1">
+            <Label.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource BorderBrush}"/>
+            </Label.BorderBrush>
+            <Label.Background>
+                <SolidColorBrush Color="{DynamicResource ButtonColor}"/>
+            </Label.Background>
+        </Label>
+        <Label x:Name="yPos" Content="yPos" HorizontalAlignment="Left" Margin="-172,256,0,0" VerticalAlignment="Top" Width="45" BorderThickness="1">
+            <Label.BorderBrush>
+                <SolidColorBrush Color="{DynamicResource BorderBrush}"/>
+            </Label.BorderBrush>
+            <Label.Background>
+                <SolidColorBrush Color="{DynamicResource ButtonColor}"/>
+            </Label.Background>
+        </Label>
         <TextBox x:Name="yPosPoint" HorizontalAlignment="Left" Height="26" Margin="-122,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" TextChanged="yPosPoint_TextChanged"/>
     </Grid>
 </Window>
