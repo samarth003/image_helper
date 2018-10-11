@@ -30,7 +30,7 @@ namespace image_helper
         }
         public string File;
         Bitmap bmp;
-        Bitmap newBmp;
+        Boolean bShowImage;
         string userWidth;
         string userlength;
         string xPosition;
@@ -47,10 +47,14 @@ namespace image_helper
 
         void paintImage(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            bmp = new Bitmap(File);
-            //picBox.Image = bmp;
-            System.Drawing.Point ulPoint = new System.Drawing.Point(0, 0);
-            e.Graphics.DrawImage(bmp, ulPoint);
+            if(bShowImage == true)
+            {
+                bmp = new Bitmap(File);
+                picBox.Image = bmp;
+                System.Drawing.Point ulPoint = new System.Drawing.Point(0, 0);
+                e.Graphics.DrawImage(bmp, ulPoint);
+                bShowImage = false;
+            }
         }
         private void Browse_Click(object sender, RoutedEventArgs e)
         {
@@ -62,6 +66,7 @@ namespace image_helper
                 if (File.EndsWith(".png") || File.EndsWith(".jpeg") || File.EndsWith(".jpg"))
                 {
                     //display
+                    bShowImage = true;
                     ShowImage(); 
                 }
                 else
@@ -77,8 +82,8 @@ namespace image_helper
             SaveFileDialog save = new SaveFileDialog();
             if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                bmp.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
-                //newBmp.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                //bmp.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                picBox.Image.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
         }
 
@@ -95,19 +100,27 @@ namespace image_helper
         private void GenBox_Click(object sender, RoutedEventArgs e)
         {
             //create a box on the image
-            //System.Drawing.Image img = picBox.Image;
-            //newBmp = new Bitmap(img);
             int xWidth = Int32.Parse(userWidth);
             int yLen = Int32.Parse(userlength);
             int xPosCoord = Int32.Parse(xPosition);
             int yPosCoord = Int32.Parse(yPosition);
-            Graphics g = picBox.CreateGraphics();
-            //Graphics g = Graphics.FromImage(img);
-            g.DrawRectangle(Pens.Red, xPosCoord, yPosCoord, xWidth, yLen);
-            g.DrawLine(Pens.Cyan, ((xWidth/2)+xPosCoord),yPosCoord, ((xWidth/2)+xPosCoord), (yLen+yPosCoord));
-            g.DrawLine(Pens.Cyan, xPosCoord, ((yLen / 2) + yPosCoord), (xWidth + xPosCoord), ((yLen / 2) + yPosCoord));
+
+            //Graphics g = picBox.CreateGraphics();
+            ////Graphics g = Graphics.FromImage(img);
+            //g.DrawRectangle(Pens.Red, xPosCoord, yPosCoord, xWidth, yLen);
+            //g.DrawLine(Pens.Cyan, ((xWidth / 2) + xPosCoord), yPosCoord, ((xWidth / 2) + xPosCoord), (yLen + yPosCoord));
+            //g.DrawLine(Pens.Cyan, xPosCoord, ((yLen / 2) + yPosCoord), (xWidth + xPosCoord), ((yLen / 2) + yPosCoord));
             //g.Save();
-            g.Dispose();
+            //bmp = (Bitmap)picBox.Image;
+            //g.Dispose();
+
+            using (var g = Graphics.FromImage(bmp))
+            {
+                g.DrawRectangle(Pens.Red, xPosCoord, yPosCoord, xWidth, yLen);
+                g.DrawLine(Pens.Cyan, ((xWidth / 2) + xPosCoord), yPosCoord, ((xWidth / 2) + xPosCoord), (yLen + yPosCoord));
+                g.DrawLine(Pens.Cyan, xPosCoord, ((yLen / 2) + yPosCoord), (xWidth + xPosCoord), ((yLen / 2) + yPosCoord));
+            }
+            picBox.Image = bmp;
         }
 
         private void xPosPoint_TextChanged(object sender, TextChangedEventArgs e)
