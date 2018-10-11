@@ -89,12 +89,63 @@ namespace image_helper
 
         private void userInWidth_TextChanged(object sender, TextChangedEventArgs e)
         {
+            int i;
+            int wUserFeed;
+            int wMax = 272;
+            int wMin = 0;
             userWidth = userInWidth.Text;
+            if (!string.IsNullOrEmpty(userInWidth.Text))
+            {
+                if(Int32.TryParse(userInWidth.Text, out i))
+                {
+                    wUserFeed = Int32.Parse(userWidth);
+                    if(wUserFeed <= wMax && wUserFeed > wMin)
+                        userWidth = userInWidth.Text;
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Out of bounds error!");
+                        userInWidth.Text = userWidth;
+                    }
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Enter numbers only!");
+                    userInWidth.Text = userWidth;
+                }
+            }
+            else
+                userWidth = " ";
         }
 
         private void userInLen_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //userlength = userInLen.Text;
+            int i;
+            int lUserFeed;
+            int lMax = 480;
+            int lMin = 0;
             userlength = userInLen.Text;
+            if (!string.IsNullOrEmpty(userInLen.Text))
+            {
+                if (Int32.TryParse(userInLen.Text, out i))
+                {
+                    lUserFeed = Int32.Parse(userlength);
+                    if (lUserFeed <= lMax && lUserFeed > lMin)
+                        userlength = userInLen.Text;
+                    else
+                    {
+                        System.Windows.MessageBox.Show("Out of bounds error!");
+                        userInLen.Text = userlength;
+                    }
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Enter numbers only!");
+                    userInLen.Text = userlength;
+                }
+            }
+            else
+                userlength = " ";
         }
 
         private void GenBox_Click(object sender, RoutedEventArgs e)
@@ -104,15 +155,6 @@ namespace image_helper
             int yLen = Int32.Parse(userlength);
             int xPosCoord = Int32.Parse(xPosition);
             int yPosCoord = Int32.Parse(yPosition);
-
-            //Graphics g = picBox.CreateGraphics();
-            ////Graphics g = Graphics.FromImage(img);
-            //g.DrawRectangle(Pens.Red, xPosCoord, yPosCoord, xWidth, yLen);
-            //g.DrawLine(Pens.Cyan, ((xWidth / 2) + xPosCoord), yPosCoord, ((xWidth / 2) + xPosCoord), (yLen + yPosCoord));
-            //g.DrawLine(Pens.Cyan, xPosCoord, ((yLen / 2) + yPosCoord), (xWidth + xPosCoord), ((yLen / 2) + yPosCoord));
-            //g.Save();
-            //bmp = (Bitmap)picBox.Image;
-            //g.Dispose();
 
             using (var g = Graphics.FromImage(bmp))
             {
