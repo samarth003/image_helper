@@ -206,12 +206,43 @@ namespace image_helper
 
         private void xPosPoint_TextChanged(object sender, TextChangedEventArgs e)
         {
-            xPosition = xPosPoint.Text;
+            //xPosition = xPosPoint.Text;
+            int i;
+            if (!string.IsNullOrEmpty(xPosPoint.Text))
+            {
+                if (Int32.TryParse(xPosPoint.Text, out i))
+                {
+                    xPosition = xPosPoint.Text;
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Enter numbers only!");
+                    xPosPoint.Text = xPosition;
+                }
+            }
+            else
+                xPosition = " ";
+
         }
 
         private void yPosPoint_TextChanged(object sender, TextChangedEventArgs e)
         {
-            yPosition = yPosPoint.Text;
+            // yPosition = yPosPoint.Text;
+            int i;
+            if (!string.IsNullOrEmpty(yPosPoint.Text))
+            {
+                if (Int32.TryParse(yPosPoint.Text, out i))
+                {
+                    yPosition = yPosPoint.Text;
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("Enter numbers only!");
+                    yPosPoint.Text = yPosition;
+                }
+            }
+            else
+                yPosition = " ";
         }
     }
 }
