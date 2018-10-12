@@ -83,7 +83,21 @@ namespace image_helper
             if (save.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 //bmp.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
-                picBox.Image.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                System.IO.FileInfo fileinfo = new System.IO.FileInfo(save.FileName);
+                switch (fileinfo.Extension.ToLower())
+                {
+                    case ".bmp":
+                        picBox.Image.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Bmp);
+                        break;
+                    case ".png":
+                        picBox.Image.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Png);
+                        break;
+                    case ".jpg":
+                    case ".jpeg":    
+                        picBox.Image.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        break;
+                }
+                //picBox.Image.Save(save.FileName, System.Drawing.Imaging.ImageFormat.Jpeg);
             }
         }
 
@@ -155,14 +169,39 @@ namespace image_helper
             int yLen = Int32.Parse(userlength);
             int xPosCoord = Int32.Parse(xPosition);
             int yPosCoord = Int32.Parse(yPosition);
+            
+            //set up parameters for mapping coordinates to points
+            int x1 = (xWidth / 2) + xPosCoord;
+            int y1 = yLen + yPosCoord;
+            int x2 = xWidth + xPosCoord;
+            int y2 = (yLen / 2) + yPosCoord;
+            System.Drawing.Font f = new System.Drawing.Font("Arial", 7);
+            System.Drawing.Brush b = new System.Drawing.SolidBrush(System.Drawing.Color.White);
+            StringFormat sf = new StringFormat();
+            sf.LineAlignment = StringAlignment.Near;
+            sf.Alignment = StringAlignment.Near;
+
+            System.Drawing.Point p1 = new System.Drawing.Point(x1, yPosCoord);
+            System.Drawing.Point p2 = new System.Drawing.Point(x1, y1);
+            System.Drawing.Point p3 = new System.Drawing.Point(xPosCoord, y2);
+            System.Drawing.Point p4 = new System.Drawing.Point(x2, y2);
+
+            string p1_name = "(" + x1 + "," + yPosCoord + ")";
+            string p2_name = "(" + x1 + "," + y1 + ")";
+            string p3_name = "(" + xPosCoord + "," + y2 + ")";
+            string p4_name = "(" + x2 + "," + y2 + ")";
 
             using (var g = Graphics.FromImage(bmp))
-            {
+            {//use graphics on the image 
                 g.DrawRectangle(Pens.Red, xPosCoord, yPosCoord, xWidth, yLen);
                 g.DrawLine(Pens.Cyan, ((xWidth / 2) + xPosCoord), yPosCoord, ((xWidth / 2) + xPosCoord), (yLen + yPosCoord));
                 g.DrawLine(Pens.Cyan, xPosCoord, ((yLen / 2) + yPosCoord), (xWidth + xPosCoord), ((yLen / 2) + yPosCoord));
+                g.DrawString(p1_name, f, b, p1, sf); //mapping coordinates to points
+                g.DrawString(p2_name, f, b, p2, sf);
+                g.DrawString(p3_name, f, b, p3, sf);
+                g.DrawString(p4_name, f, b, p4, sf);
             }
-            picBox.Image = bmp;
+            picBox.Image = bmp; //saving the edited image on the picturebox control
         }
 
         private void xPosPoint_TextChanged(object sender, TextChangedEventArgs e)
