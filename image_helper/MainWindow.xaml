@@ -51,5 +51,7 @@
             </Label.Background>
         </Label>
         <TextBox x:Name="yPosPoint" HorizontalAlignment="Left" Height="26" Margin="-122,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="58" TextChanged="yPosPoint_TextChanged"/>
+        <RadioButton x:Name="radioButton" Content="RadioButton" HorizontalAlignment="Left" Margin="308,206,-136,0" VerticalAlignment="Top" Width="100"/>
+        <RadioButton x:Name="radioButton_Copy" Content="RadioButton" HorizontalAlignment="Left" Margin="308,165,-136,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 </Window>

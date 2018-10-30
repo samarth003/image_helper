@@ -30,6 +30,7 @@ namespace image_helper
         }
         public string File;
         Bitmap bmp;
+        Bitmap temp_bmp;
         Boolean bShowImage;
         string userWidth;
         string userlength;
@@ -42,6 +43,8 @@ namespace image_helper
             picBox.Width = Convert.ToInt32(winFormHost.Width);
             picBox.Height = Convert.ToInt32(winFormHost.Height);
             winFormHost.Child = picBox;
+            bmp = new Bitmap(File);
+            temp_bmp = bmp;
             picBox.Paint += new System.Windows.Forms.PaintEventHandler(paintImage);
         }
 
@@ -49,7 +52,8 @@ namespace image_helper
         {
             if(bShowImage == true)
             {
-                bmp = new Bitmap(File);
+               // bmp = new Bitmap(File);
+                //temp_bmp = bmp;
                 picBox.Image = bmp;
                 System.Drawing.Point ulPoint = new System.Drawing.Point(0, 0);
                 e.Graphics.DrawImage(bmp, ulPoint);
@@ -178,8 +182,12 @@ namespace image_helper
             System.Drawing.Font f = new System.Drawing.Font("Arial", 7);
             System.Drawing.Brush b = new System.Drawing.SolidBrush(System.Drawing.Color.White);
             StringFormat sf = new StringFormat();
+            StringFormat sf1 = new StringFormat();
             sf.LineAlignment = StringAlignment.Near;
             sf.Alignment = StringAlignment.Near;
+
+            sf1.LineAlignment = StringAlignment.Far;
+            sf1.Alignment = StringAlignment.Far;
 
             System.Drawing.Point p1 = new System.Drawing.Point(x1, yPosCoord);
             System.Drawing.Point p2 = new System.Drawing.Point(x1, y1);
@@ -199,7 +207,7 @@ namespace image_helper
                 g.DrawString(p1_name, f, b, p1, sf); //mapping coordinates to points
                 g.DrawString(p2_name, f, b, p2, sf);
                 g.DrawString(p3_name, f, b, p3, sf);
-                g.DrawString(p4_name, f, b, p4, sf);
+                g.DrawString(p4_name, f, b, p4, sf1);
             }
             picBox.Image = bmp; //saving the edited image on the picturebox control
         }
